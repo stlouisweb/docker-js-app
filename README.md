@@ -9,3 +9,26 @@ This app is a reference architecture for Isomporhic JavaScript applications, the
 - web-server-proxy: Nginx with SSL termination
 
 
+### Build the backend container
+
+To update the backend FeathersJS app use the `docker build` command
+
+```
+$ cd ./backend
+$ docker build -t backend .
+```
+
+### Build the frontend container
+
+To update the frontend FeathersJS app use the `docker build` command
+
+```
+$ cd ./frontend
+$ docker build -t frontend .
+```
+
+### Start the app
+
+```
+$ docker-compose up -d
+```
