@@ -11,7 +11,7 @@ This app is a reference architecture for Isomporhic JavaScript applications, the
 
 ### Build the backend container
 
-To update the backend FeathersJS app use the `docker build` command
+To create or update the backend container use the `docker build` command
 
 ```
 $ cd ./backend
@@ -20,7 +20,7 @@ $ docker build -t backend .
 
 ### Build the frontend container
 
-To update the frontend FeathersJS app use the `docker build` command
+To create or update the backend container use the `docker build` command
 
 ```
 $ cd ./frontend
