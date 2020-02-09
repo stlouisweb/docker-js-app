@@ -2,10 +2,10 @@
 
 This app is a reference architecture for Isomporhic JavaScript applications, the front end is a static SPA style app with its own NodeJS server for SSR and optimized code-splitting, the backend is NodeJS offering a REST API and real-time websocket connections.
 
-- frontend: NextJS (connects to backend with websocket client)
-- backend: FeathersJS
+- frontend: NextJS (connects to backend with websocket client WIP)
+- backend: FeathersJS WIP
 - database: MongoDB 
-- file-system: Minio (S3 compatibile object store
+- file-system: Minio (S3 compatibile object store)
 - web-server-proxy: Nginx with SSL termination
 
 
@@ -43,4 +43,13 @@ To use the local domains modify your hosts file
 127.0.0.1   local.app
 127.0.0.1   storage.local.app
 127.0.0.1   api.local.app
+```
+
+use [mkcert](https://github.com/FiloSottile/mkcert) to install the ssl certs in your local trust authority
+
+```
+$ cd ./volumes/nginx/private
+$ export CAROOT=${PWD}
+$ mkcert -install
+$ docker exec -it reverse_proxy nginx -s reload
 ```
