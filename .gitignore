@@ -111,3 +111,9 @@ backend/lib/
 backend/data/
 
 frontend/node_modules
+
+volumes/
+!volumes/
+
+volumes/*
+!volumes/nginx/

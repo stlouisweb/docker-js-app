@@ -25,7 +25,7 @@ services:
       - minio_data:/data
     environment:
       MINIO_ACCESS_KEY: access
-      MINIO_SECRET_KEY: secret
+      MINIO_SECRET_KEY: secretkey
     command: server /data
   feathers:
     container_name: backend
