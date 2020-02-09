@@ -32,3 +32,15 @@ $ docker build -t frontend .
 ```
 $ docker-compose up -d
 ```
+
+### Local DNS set up
+
+To use the local domains modify your hosts file
+
+`sudo vi /etc/host` and add this
+
+```
+127.0.0.1   local.app
+127.0.0.1   storage.local.app
+127.0.0.1   api.local.app
+```
