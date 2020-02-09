@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: reverse_proxy
+    hostname: reverse_proxy
+    image: nginx:stable
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - nginx_conf:/etc/nginx
+      - nginx_private:/etc/ssl/private
+    depends_on:
+      - minio
+      - feathers
+      - next
+  minio:
+    container_name: storage
+    hostname: storage
+    image: minio/minio
+    ports:
+      - 9000:9000
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ACCESS_KEY: access
+      MINIO_SECRET_KEY: secret
+    command: server /data
+  feathers:
+    container_name: backend
+    hostname: backend
+    image: node:alpine3.10
+    ports:
+      - 3030:3030
+    depends_on:
+      - mongo
+  next:
+    container_name: frontend
+    hostname: frontend
+    image: node:alpine3.10
+    ports:
+      - "3000:3000"
+  mongo:
+    container_name: database
+    hostname: database
+    image: mongo:bionic
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  nginx_conf:
+    driver: local
+    driver_opts:
+      o: bind
+      device: ${PWD}/volumes/nginx/conf
+  nginx_private:
+    driver: local
+    driver_opts:
+      o: bind
+      device: ${PWD}/volumes/nginx/private
+  minio_data:
+    driver: local
+    driver_opts:
+      o: bind
+      device: ${PWD}/volumes/minio/data
+  mongo_data:
+    driver: local
+    driver_opts:
+      o: bind
+      device: ${PWD}/volumes/mongo/data
